@@ -1,32 +1,32 @@
 Cypress.on('uncaught:exception', (err, runnable) => {
-  // Ignora los errores no detectados
+  // Ignore undetected bugs
   return false;
 });
 
 describe('Log In', () => {
   it('should log in successfully', () => {
-    // Visita el sitio web
+    // Visits homepage
     cy.visit('https://www.shopusa.com/in/');
 
-    // Haz clic en el enlace "Login" forzando el clic en un elemento oculto
+    // Clicks on the "Login" button, forcing the click on a hidden element
     cy.contains('Login').click({force: true});
 
-    // Espera 2 segundos para asegurar que la página se ha cargado completamente
+    // Awaits 2 seconds to ensure the webpage is completely loaded
     cy.wait(2000);
 
-    // Ingresa el correo electrónico y la contraseña
+    // Enters the Login e-mail and password values
     cy.get('#txtsuiteID').click().type('buenoscypherz@gmail.com');
     cy.get('#txtpassword').click().type('standardpassword07');
 
-    // Envía el formulario de inicio de sesión
+    // Clicks and sends the information for the Login process to be executed
     cy.get('#loginbutton').click().wait(5000);
     cy.url().should('eq', 'https://www.shopusa.com/in/shipping/'); 
 
 
-    // Haz clic en "navbar"
+    // Clicks on "navbar"
     cy.get('#rdnavbartoggle').click();
 
-    // Haz clic en "shopping"
+    // Clicks on "shopping"
     cy.get('#scroll-membership').click().wait(5000);
     cy.url().should('eq', 'https://www.shopusa.com/blog/india/'); 
     cy.get('.cat-item-1070 > a').click().wait(5000);
